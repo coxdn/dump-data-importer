@@ -1,0 +1,15 @@
+{
+  "name": "dump-data-importer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "import-dump.js",
+  "scripts": {
+    "start": "node import-dump.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "pg-promise": "^11.5.4"
+  }
+}
