@@ -1,13 +1,5 @@
 const fs = require('fs')
 const initQueries = fs.readFileSync('init-queries.sql', 'utf8')
-const copyConfig = () => {
-  if (!fs.existsSync('config.json')) {
-    const exampleConfig = fs.readFileSync('config.example.json', 'utf8')
-    fs.writeFileSync('config.json', exampleConfig, 'utf8')
-  }
-}
-
-const config = require('./config')
 
 const runInitQueries = async () => {
   const pgp = require('pg-promise')()
@@ -31,5 +23,11 @@ const runInitQueries = async () => {
   }
 }
 
-copyConfig()
+if (!fs.existsSync('config.json')) {
+  const exampleConfig = fs.readFileSync('config.example.json', 'utf8')
+  fs.writeFileSync('config.json', exampleConfig, 'utf8')
+}
+
+const config = require('./config')
+
 runInitQueries()
