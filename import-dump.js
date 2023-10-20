@@ -1,7 +1,7 @@
 const fs = require('fs').promises
-const yaml = require('js-yaml')
 const db = require('./db')
-const convertToYAML = require('./helpers/convert-to-yaml')
+const parseFormattedText = require('./helpers/parse-formatted-text')
+const convertToObject = require('./helpers/text-to-object')
 const objectToSql = require('./helpers/object-to-sql')
 
 const filePath = 'dump.txt'
@@ -11,8 +11,8 @@ async function main() {
 
   try {
     const fileContent = await fs.readFile(filePath, 'utf8')
-    const yamlContent = convertToYAML(fileContent)
-    const parsedObject = yaml.load(yamlContent)
+    const parsedContent = parseFormattedText(fileContent)
+    const parsedObject = convertToObject(parsedContent)
     const sqlQueries = objectToSql(parsedObject)
 
     connection = await db
@@ -23,7 +23,7 @@ async function main() {
       await connection.query(query.template, query.params)
     }
 
-    await connection.query('COMMIT');
+    await connection.query('COMMIT')
 
     console.log('All SQL queries executed successfully.')
   } catch (err) {
@@ -32,7 +32,7 @@ async function main() {
     console.error('Error:', err)
   } finally {
     if (connection) {
-      await connection.$pool.end();
+      await connection.$pool.end()
     }
   }
 }

@@ -15,19 +15,19 @@ CREATE TABLE IF NOT EXISTS "Department" (
 CREATE TABLE IF NOT EXISTS "Statement" (
     "id" INT,
     "parent_id" INT,
-    "amount" VARCHAR(16),
-    "date" VARCHAR(16)
+    "amount" DECIMAL(10, 2),
+    "date" DATE
 );
 
 CREATE TABLE IF NOT EXISTS "Donation" (
     "id" INT,
     "parent_id" INT,
-    "date" VARCHAR(16),
+    "date" DATE,
     "amount" VARCHAR(16)
 );
 
 CREATE TABLE IF NOT EXISTS "Rate" (
-    "date" VARCHAR(16),
+    "date" DATE,
     "sign" VARCHAR(3),
     "value" DECIMAL(25, 17)
 );
