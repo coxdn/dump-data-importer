@@ -4,6 +4,7 @@
   "description": "",
   "main": "import-dump.js",
   "scripts": {
+    "install": "node setup.js",
     "start": "node import-dump.js"
   },
   "author": "",

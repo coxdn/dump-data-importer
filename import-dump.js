@@ -1,6 +1,6 @@
 const fs = require('fs').promises
-const db = require('./db')
 const yaml = require('js-yaml')
+const db = require('./db')
 const convertToYAML = require('./helpers/convert-to-yaml')
 const objectToSql = require('./helpers/object-to-sql')
 
